@@ -1,0 +1,5 @@
+pandas
+rapidfuzz
+scikit-learn
+fastapi
+uvicorn
