@@ -11,9 +11,11 @@ def load_and_clean_data():
     crm['meeting_time'] = crm['meeting_time'].fillna("00:00")
 
     # Convert datetime
-    crm['datetime'] = pd.to_datetime(
-        crm['meeting_date'] + " " + crm['meeting_time'],
-        errors='coerce'
+
+    crm['meeting_date'] = pd.to_datetime(crm['meeting_date'], errors='coerce')
+
+    crm['datetime'] = crm['meeting_date'] + pd.to_timedelta(
+    crm['meeting_time'].fillna("00:00") + ":00"
     )
 
     cal['datetime'] = pd.to_datetime(cal['start_time'], errors='coerce')
