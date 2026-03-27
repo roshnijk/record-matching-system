@@ -7,15 +7,14 @@ def load_and_clean_data():
     # Fix malformed dates
     crm['meeting_date'] = crm['meeting_date'].astype(str).str.replace(r'[^0-9\-]', '', regex=True)
 
-    # Fill missing time
-    crm['meeting_time'] = crm['meeting_time'].fillna("00:00")
+    # Ensure both are strings
+    crm['meeting_date'] = crm['meeting_date'].astype(str)
+    crm['meeting_time'] = crm['meeting_time'].astype(str).fillna("00:00")
 
-    # Convert datetime
-
-    crm['meeting_date'] = pd.to_datetime(crm['meeting_date'], errors='coerce')
-
-    crm['datetime'] = crm['meeting_date'] + pd.to_timedelta(
-    crm['meeting_time'].fillna("00:00") + ":00"
+    # Combine safely as string 
+    crm['datetime'] = pd.to_datetime(
+    crm['meeting_date'] + " " + crm['meeting_time'],
+    errors='coerce'
     )
 
     cal['datetime'] = pd.to_datetime(cal['start_time'], errors='coerce')
