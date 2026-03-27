@@ -9,9 +9,11 @@ def evaluate(predictions_df):
     y_pred = []
 
     for pair in labels["cross_source_pairs"]:
-        crm_id = pair["crm_id"]
-        cal_id = pair["calendar_id"]
-        actual = pair["match"]
+        "crm_id": pair['id']
+        "cal_id": pair['event_id']
+        actual = pair["match"]  
+
+      
 
         pred = predictions_df[
             (predictions_df["crm_id"] == crm_id) &
