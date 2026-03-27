@@ -3,8 +3,10 @@ from preprocess import load_and_clean_data
 from matcher import compute_score
 from evaluate import evaluate
 
-crm, cal = load_and_clean_data()
 
+crm, cal = load_and_clean_data()
+print(crm.columns)
+print(cal.columns)
 results = []
 
 for _, c in crm.iterrows():
