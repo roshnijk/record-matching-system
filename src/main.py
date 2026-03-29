@@ -30,5 +30,9 @@ for _, c in crm.iterrows():
 
 df = pd.DataFrame(results)
 df.to_csv("output/predictions.csv", index=False)
+#testing
+print("DF COLUMNS:", df.columns)
+print("DF SHAPE:", df.shape)
+print(df.head())
 
 evaluate(df)
