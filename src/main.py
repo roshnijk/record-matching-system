@@ -25,7 +25,7 @@ for _, c in crm.iterrows():
             "crm_id": c['crm_id'],
             "cal_id": k['event_id'],
             "score": score,
-            "match": score > 0.7
+            "match": score > 0.5
         })
 
 df = pd.DataFrame(results, columns=["crm_id", "cal_id", "score", "match"])
