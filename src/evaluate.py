@@ -10,7 +10,7 @@ def evaluate(predictions_df):
 
     for pair in labels["cross_source_pairs"]:
         crm_id = pair["crm_id"]
-        cal_id = pair["cal_id"]
+        cal_id = pair["calendar_id"]
         actual = pair["match"]  
 
       
