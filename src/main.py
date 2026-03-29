@@ -22,7 +22,7 @@ for _, c in crm.iterrows():
         score = compute_score(c, k)
 
         results.append({
-            "crm_id": c['id'],
+            "crm_id": c['crm_id'],
             "cal_id": k['event_id'],
             "score": score,
             "match": score > 0.7
