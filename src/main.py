@@ -28,7 +28,7 @@ for _, c in crm.iterrows():
             "match": score > 0.7
         })
 
-df = pd.DataFrame(results)
+df = pd.DataFrame(results, columns=["crm_id", "cal_id", "score", "match"])
 df.to_csv("output/predictions.csv", index=False)
 #testing
 print("DF COLUMNS:", df.columns)
