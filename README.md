@@ -8,6 +8,15 @@ The goal is to identify which records refer to the same real-world meeting, desp
 
 ---
 
+## Observations
+
+During evaluation, I noticed that the system produced very few or no matches at higher thresholds.
+
+This suggests that the current feature set and similarity scoring are not strong enough to confidently link records in many cases. Rather than forcing matches by aggressively lowering the threshold, I chose to keep the system conservative and use this as a signal for where improvements are needed.
+
+This helped highlight the importance of stronger text similarity methods and better feature representation.
+
+
 ## How to Run
 
 1. Install dependencies:
@@ -58,7 +67,6 @@ This step was important because even small inconsistencies (like spacing or casi
 ### 2. Candidate Selection (Blocking)
 
 To avoid comparing every record with every other record, I limited comparisons to meetings that are close in time (within a fixed window).
-
 This reduces unnecessary comparisons and makes the matching more realistic.
 
 ---
@@ -74,7 +82,6 @@ For each candidate pair, I calculated a weighted similarity score based on:
 * Location
 
 Not all features are equally reliable, so I assigned higher weight to company and participants, and lower weight to location.
-
 A threshold is used to decide whether two records match.
 
 ---
@@ -88,7 +95,6 @@ I evaluated the system using the provided labeled pairs and measured:
 * F1 Score
 
 One important observation is that the labels are partial, so recall may be underestimated — there could be valid matches that are not labeled.
-
 During testing, I also noticed cases where no matches were predicted at higher thresholds. This helped in tuning the threshold and understanding the trade-off between precision and recall.
 
 ---
@@ -128,15 +134,14 @@ With more time, I would:
 * Add a feedback loop to refine matching over time
 
 ---
-
 ## AI Usage
 
-I used AI tools mainly for brainstorming and structuring parts of the solution, especially around feature ideas and code organization.
+I used AI tools mainly to speed up initial development, especially for structuring the pipeline and brainstorming possible features for matching.
 
-All key decisions — including feature selection, scoring logic, and trade-offs — were reviewed and adjusted based on my understanding of the data.
+However, I found that some of the generated code did not handle real-world data issues well. For example, there were datatype inconsistencies when combining date and time fields, and assumptions about column names did not always match the actual data. I had to debug and correct these parts manually.
 
----
+I also adjusted the matching logic and thresholds based on observed outputs rather than relying on default suggestions.
 
-## Time Spent
+Overall, AI helped accelerate the starting point, but significant refinement was needed to make the solution work reliably on the given dataset.
 
-Approximately 4 hours
+
